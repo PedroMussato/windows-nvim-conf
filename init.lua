@@ -1,1 +1,2 @@
+require("ferzener")
 require("packer")
