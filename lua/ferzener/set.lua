@@ -1,6 +1,22 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>w", vim.cmd.w)
+
+-- Define a function to prompt for a filename and create a new file
+function create_new_file()
+    local filename = vim.fn.input('Enter new file name: ')
+    if filename ~= '' then
+        vim.cmd('edit ' .. filename)
+    else
+        print("No filename provided")
+    end
+end
+
+-- Map % to call the custom function
+vim.api.nvim_set_keymap('n', '<leader>n', ':lua create_new_file()<CR>', { noremap = true, silent = true })
+
+
+
 vim.keymap.set("n", "<leader>so", vim.cmd.so)
 
 vim.keymap.set("n", "<C-k>", "<C-d>zz")
